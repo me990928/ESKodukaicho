@@ -13,10 +13,24 @@ struct ContentView: View {
     @Query private var items: [Item]
 
     @State var isCurrent: Int = 0
+    @State var xOffset: CGFloat = 0
     
     var body: some View {
         ZStack {
-            
+            GeometryReader { geometry in
+                HStack(spacing: 0){
+                    CalendarView().frame(width: geometry.size.width)
+                    MoneyList().frame(width: geometry.size.width)
+                }.offset(x: xOffset).onChange(of: isCurrent) {
+                    withAnimation {
+                        if isCurrent == 0 {
+                            xOffset = 0
+                        } else if isCurrent == 1 {
+                            xOffset = 0 - geometry.size.width
+                        }
+                    }
+                }
+            }
             VStack{
                 Spacer()
                 NavigationBar(isCurrent: $isCurrent)
