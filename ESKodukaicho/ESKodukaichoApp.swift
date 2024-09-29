@@ -25,7 +25,8 @@ struct ESKodukaichoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            FloatingNavigation()
         }
         .modelContainer(sharedModelContainer)
     }
