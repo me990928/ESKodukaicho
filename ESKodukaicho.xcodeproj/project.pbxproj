@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		ED9D0B8E2CA90C7F00A4DACA /* ESKodukaicho */ = {
+		ED521FC22CA99EFA0071E1B0 /* ESKodukaicho */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ESKodukaicho;
 			sourceTree = "<group>";
@@ -75,7 +75,7 @@
 		ED9D0B832CA90C7F00A4DACA = {
 			isa = PBXGroup;
 			children = (
-				ED9D0B8E2CA90C7F00A4DACA /* ESKodukaicho */,
+				ED521FC22CA99EFA0071E1B0 /* ESKodukaicho */,
 				ED9D0BA12CA90C8100A4DACA /* ESKodukaichoTests */,
 				ED9D0BAB2CA90C8100A4DACA /* ESKodukaichoUITests */,
 				ED9D0B8D2CA90C7F00A4DACA /* Products */,
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				ED9D0B8E2CA90C7F00A4DACA /* ESKodukaicho */,
+				ED521FC22CA99EFA0071E1B0 /* ESKodukaicho */,
 			);
 			name = ESKodukaicho;
 			packageProductDependencies = (
