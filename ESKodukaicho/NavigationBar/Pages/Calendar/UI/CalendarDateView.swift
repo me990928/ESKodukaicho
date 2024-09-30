@@ -60,10 +60,10 @@ struct DateView: View {
         
         VStack{
             ZStack {
-                if current {
+                if current || (current && isSelected) {
                     Circle().foregroundStyle(.pink).frame(width: 40)
                 }
-                if isSelected {
+                if isSelected && !current {
                     Circle().foregroundStyle(.white).frame(width: 40)
                 }
                 if date.month == DateTranslate(date: currentDate).getDateComponents().month?.description ?? "0" && !isSelected {
