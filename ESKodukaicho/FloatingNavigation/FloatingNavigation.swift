@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FloatingNavigation: View {
     
-    @State var width: CGFloat = 60
+    @State var width: CGFloat = 50
     @State var isToggle: Bool = false
     
     @State var isInputOpen: Bool = false
@@ -25,9 +25,9 @@ struct FloatingNavigation: View {
             VStack{
                 Spacer()
                 HStack{
-                    Rectangle().fill(.clear).frame(width: geometryReader.size.width, height: 60).overlay {
+                    Rectangle().fill(.clear).frame(width: geometryReader.size.width, height: 50).overlay {
                         HStack {
-                            Rectangle().frame(width: width, height: 60).foregroundColor(Color("FTB_BK")).clipShape(RoundedRectangle(cornerRadius: 90))
+                            Rectangle().frame(width: width, height: 50).foregroundColor(Color("FTB_BK")).clipShape(RoundedRectangle(cornerRadius: 90))
                             Spacer()
                         }
                     }.overlay {
@@ -37,39 +37,43 @@ struct FloatingNavigation: View {
                                     isInputOpen.toggle()
                                 } label: {
                                     Circle().fill(Color("FTB_N")).overlay(content: {
-                                        Image(systemName: "square.and.pencil").font(.title).foregroundStyle(Color("FTB_B"))
+                                        Image(systemName: "square.and.pencil").font(.body).foregroundStyle(Color("FTB_B"))
                                     }).padding(5)
                                 }.offset(x: x1Offset)
                                 Button {
                                     isTagsOpen.toggle()
                                 } label: {
                                     Circle().fill(Color("FTB_N")).overlay(content: {
-                                        Image(systemName: "tag").font(.title).foregroundStyle(Color("FTB_B"))
+                                        Image(systemName: "tag").font(.body).foregroundStyle(Color("FTB_B"))
                                     }).padding(5)
                                 }.offset(x: x2Offset)
                                 Button {
                                     isSettingsOpen.toggle()
                                 } label: {
                                     Circle().fill(Color("FTB_N")).overlay(content: {
-                                        Image(systemName: "gearshape").font(.title).foregroundStyle(Color("FTB_B"))
+                                        Image(systemName: "gearshape").font(.body).foregroundStyle(Color("FTB_B"))
                                     }).padding(5)
                                 }.offset(x: x3Offset)
                                 Circle().fill(Color("FTB_B")).overlay(content: {
-                                    Image(systemName: "plus").font(.title).foregroundStyle(Color("FTB_N")).rotationEffect(isToggle ? .degrees(45) : .degrees(0))
+                                    Image(systemName: "plus").font(.body).foregroundStyle(Color("FTB_N")).rotationEffect(isToggle ? .degrees(45) : .degrees(0))
                                 })
                                 .onTapGesture {
+                                    
+                                    let generator = UIImpactFeedbackGenerator(style: .light)
+                                    generator.prepare()
+                                    generator.impactOccurred()
                                     
                                     withAnimation{
                                         isToggle.toggle()
                                     }
                                     withAnimation {
                                         if isToggle {
-                                            width = 60 * 3 + 60 + 31
-                                            x1Offset = 60 * 3 + 30
-                                            x2Offset = 60 * 2 + 20
-                                            x3Offset = 60 + 10
+                                            width = 50 * 3 + 60 + 22
+                                            x1Offset = 60 * 3
+                                            x2Offset = 60 * 2
+                                            x3Offset = 60
                                         } else {
-                                            width = 60
+                                            width = 50
                                             x1Offset = 0
                                             x2Offset = 0
                                             x3Offset = 0

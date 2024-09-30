@@ -19,7 +19,7 @@ struct NavigationBar: View {
                 HStack{
                     Spacer()
                     Rectangle().fill(Color("FTB_N")).frame(width: geometry.size.width * 0.7, height: 60).clipShape(RoundedRectangle(cornerRadius: 10))
-                        .background(
+                        .background(Color.clear,
                            in: RoundedRectangle(cornerRadius: 8, style: .continuous)
                         ).padding(20).overlay {
                             HStack {
@@ -53,6 +53,9 @@ struct NavigationBarButton: View {
         VStack{
             Image(systemName: iconName).font(.largeTitle).onTapGesture {
                 isCurrent = id
+                let generator = UIImpactFeedbackGenerator(style: .rigid)
+                generator.prepare()
+                generator.impactOccurred()
             }
             Text(caption).font(.caption)
         }.foregroundStyle(isCurrent == id ? Color.white : Color.gray)

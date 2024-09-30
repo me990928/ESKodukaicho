@@ -19,7 +19,7 @@ struct ContentView: View {
         ZStack {
             GeometryReader { geometry in
                 HStack(spacing: 0){
-                    CalendarView().frame(width: geometry.size.width)
+                    CalendarPages().frame(width: geometry.size.width)
                     MoneyList().frame(width: geometry.size.width)
                 }.offset(x: xOffset).onChange(of: isCurrent) {
                     withAnimation {
@@ -35,7 +35,7 @@ struct ContentView: View {
                 Spacer()
                 NavigationBar(isCurrent: $isCurrent)
             }
-        }
+        }.background(Color.FTB_BK)
 //        NavigationSplitView {
 //            List {
 //                ForEach(items) { item in
