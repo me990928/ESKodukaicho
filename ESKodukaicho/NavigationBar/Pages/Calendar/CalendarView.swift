@@ -61,9 +61,7 @@ struct CalendarView: View {
                 HStack {
                     
                     Button(action: {
-                        currentDate = calendarModel.downCalendarMonth(current: currentDate)
-                        calendarModel.calendarArr = []
-                        calendarModel.createCalendar(current: currentDate)
+                        backPageCalendar()
                     }, label: {
                         Image(systemName: "chevron.backward")
                     }).padding(.leading)
@@ -76,9 +74,7 @@ struct CalendarView: View {
                     Spacer()
                     
                     Button(action: {
-                        currentDate = calendarModel.upCalendarMonth(current: currentDate)
-                        calendarModel.calendarArr = []
-                        calendarModel.createCalendar(current: currentDate)
+                        nextPageCalendar()
                     }, label: {
                         Image(systemName: "chevron.forward")
                     }).padding(.trailing)
@@ -100,10 +96,11 @@ struct CalendarView: View {
                 Text("土")
             }).frame(maxWidth: .infinity).foregroundStyle(.white)
             
-            CalendarDateView(currentDate: $currentDate, calendarArr: $calendarModel.calendarArr)
+            CalendarDateView(currentDate: $currentDate, calendarArr: $calendarModel.calendarArr, isSelectedDay: $calendarModel.selectedDate)
             
         }.onAppear(){
             calendarModel.createCalendar(current: currentDate)
+            print(calendarModel.selectedDate)
         }.background(Color(.FTB_N)).frame(height: calendarModel.calendarArr.count > 35 ? 405 : 350)
         .gesture(
             DragGesture()
@@ -115,28 +112,20 @@ struct CalendarView: View {
                     if value.translation.height < -50 {
                         // 上スワイプ
                         print("上")
-                        currentDate = calendarModel.upCalendarMonth(current: currentDate)
-                        calendarModel.calendarArr = []
-                        calendarModel.createCalendar(current: currentDate)
+                        nextPageCalendar()
                         generator.impactOccurred()
                     } else if value.translation.height > 30 {
                         // 下スワイプ
                         print("下")
-                        currentDate = calendarModel.downCalendarMonth(current: currentDate)
-                        calendarModel.calendarArr = []
-                        calendarModel.createCalendar(current: currentDate)
+                        backPageCalendar()
                         generator.impactOccurred()
                     } else if value.translation.width > 30 {
                         print("右")
-                        currentDate = calendarModel.downCalendarMonth(current: currentDate)
-                        calendarModel.calendarArr = []
-                        calendarModel.createCalendar(current: currentDate)
+                        backPageCalendar()
                         generator.impactOccurred()
                     } else if value.translation.width < -30 {
                         print("左")
-                        currentDate = calendarModel.upCalendarMonth(current: currentDate)
-                        calendarModel.calendarArr = []
-                        calendarModel.createCalendar(current: currentDate)
+                        nextPageCalendar()
                         generator.impactOccurred()
                     }
                 }
@@ -149,9 +138,39 @@ struct CalendarView: View {
         month = DateTranslate(date: currentDate).getStructDateComponent().month
     }
     
+    func nextPageCalendar(){
+        currentDate = calendarModel.upCalendarMonth(current: currentDate)
+        calendarModel.calendarArr = []
+        calendarModel.createCalendar(current: currentDate)
+        calendarModel.selectedDate.month = String((Int(self.month) ?? 0) + 1)
+        if calendarModel.selectedDate.month == "13" {
+            calendarModel.selectedDate.month = "1"
+            calendarModel.selectedDate.year = String((Int(self.year) ?? 0) + 1)
+        }
+        print(calendarModel.selectedDate)
+    }
+    
+    func backPageCalendar(){
+        currentDate = calendarModel.downCalendarMonth(current: currentDate)
+        calendarModel.calendarArr = []
+        calendarModel.createCalendar(current: currentDate)
+        calendarModel.selectedDate.month = String((Int(self.month) ?? 0) - 1)
+        if calendarModel.selectedDate.month == "0" {
+            calendarModel.selectedDate.month = "12"
+            calendarModel.selectedDate.year = String((Int(self.year) ?? 0) - 1)
+        }
+        print(calendarModel.selectedDate)
+    }
+    
 }
 
 #Preview {
     @Previewable @State var model = CalendarModel()
     CalendarView(currentDate: Date(), model: .init(projectedValue: $model))
+}
+
+extension String {
+    func toInt() -> Int? {
+        Int(self)
+    }
 }
