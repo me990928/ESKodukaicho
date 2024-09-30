@@ -18,12 +18,11 @@ struct CalendarDateView: View {
     @State var detailData = 0
     @Binding var currentDate: Date
     @Binding var calendarArr: [DateComponent]
-    
-    @Binding var calendarDetailData: [People]
+    @State var isSelectedDay: DateComponent = DateComponent(year: "", month: "", day: "")
     
     var body: some View {
         GeometryReader { geo in
-            Grid(horizontalSpacing: 0) {
+            Grid(alignment: .center, horizontalSpacing: 0) {
                 let rowCount = calendarArr.count / 7
                 ForEach(0..<rowCount, id: \.self) { week in
                     GridRow {
@@ -31,7 +30,7 @@ struct CalendarDateView: View {
                         let endIndex = startIndex + 7
                         ForEach(startIndex..<endIndex, id: \.self) { date in
                             if date < calendarArr.count {
-                                DateView(width: dateViewWidth, currentDate: $currentDate, date: $calendarArr[date], calendarDetailData: $calendarDetailData)
+                                DateView(width: dateViewWidth, currentDate: $currentDate, date: $calendarArr[date], isSelectedDay: $isSelectedDay)
                             }
                         }
                     }
@@ -53,9 +52,9 @@ struct DateView: View {
     @State var isOpenSheet: Bool = false
     @Binding var currentDate: Date
     @Binding var date: DateComponent
-    @Binding var calendarDetailData: [People]
-    @State var filterdDatail: [People] = []
     @State var wage: Int = 0
+    @Binding var isSelectedDay: DateComponent
+    @State var isSelected: Bool = false
     
     var body: some View {
         
@@ -64,10 +63,15 @@ struct DateView: View {
                 if current {
                     Circle().foregroundStyle(.pink).frame(width: 40)
                 }
-                if date.month == DateTranslate(date: currentDate).getDateComponents().month?.description ?? "0" {
-                    Text(date.day).frame(width: width).foregroundStyle(current ? .white : Color(.label)).bold(current)
+                if isSelected {
+                    Circle().foregroundStyle(.white).frame(width: 40)
+                }
+                if date.month == DateTranslate(date: currentDate).getDateComponents().month?.description ?? "0" && !isSelected {
+                    Text(date.day).frame(width: width).foregroundStyle(current ? .white : Color(.white)).bold(current).frame(height: 40)
+                } else if isSelected {
+                    Text(date.day).frame(width: width).foregroundStyle(current ? .white : Color(.FTB_N)).bold(isSelected).frame(height: 40)
                 } else {
-                    Text(date.day).frame(width: width).foregroundStyle(.gray)
+                    Text(date.day).frame(width: width).foregroundStyle(.FTB_B).frame(height: 40)
                 }
             }
             // 簡易的に書き込めるスペース
@@ -76,20 +80,25 @@ struct DateView: View {
             }
         }.onAppear(){
             checkCurrentDate()
-            wage = filterPeopleWage(byYear: Int(date.year) ?? 0, month: Int(date.month) ?? 0, day: Int(date.day) ?? 0, peoples: calendarDetailData)
-            filterdDatail = filterPeoples(byYear: Int(date.year) ?? 0, month: Int(date.month) ?? 0, day: Int(date.day) ?? 0, peoples: calendarDetailData)
-            
         }.onChange(of: currentDate) {
             checkCurrentDate()
-            wage = filterPeopleWage(byYear: Int(date.year) ?? 0, month: Int(date.month) ?? 0, day: Int(date.day) ?? 0, peoples: calendarDetailData)
-            filterdDatail = filterPeoples(byYear: Int(date.year) ?? 0, month: Int(date.month) ?? 0, day: Int(date.day) ?? 0, peoples: calendarDetailData)
-        }.onTapGesture {
-            if wage > 0 {
-                isOpenSheet.toggle()
+        }.onChange(of: isSelectedDay.day, {
+            
+            if date.day == isSelectedDay.day && date.month == isSelectedDay.month {
+                isSelected = true
+            } else {
+                isSelected = false
             }
-        }.sheet(isPresented: $isOpenSheet, content: {
-            CalendarDetailView(calendarDatail: $filterdDatail)
-        })
+            
+        }).onTapGesture {
+            isSelectedDay.year = date.year
+            isSelectedDay.day = date.day
+            isSelectedDay.month = date.month
+            
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
     }
     
     /// カレンダーの中に今日の日付があるか確認
@@ -104,20 +113,4 @@ struct DateView: View {
         self.current = isSameYear && isSameMonth && isSameDay
     }
     
-    func filterPeopleWage(byYear year: Int, month: Int, day: Int, peoples: [People]) -> Int {
-        let filtered = filterPeoples(byYear: year, month: month, day: day, peoples: peoples)
-        var wage = 0
-        for filter in filtered {
-            wage += filter.wage
-        }
-        return wage
-    }
-    
-    func filterPeoples(byYear year: Int, month: Int, day: Int, peoples: [People]) -> [People] {
-        let calendar = Calendar.current
-        return peoples.filter { people in
-            let components = calendar.dateComponents([.year, .month, .day], from: people.date)
-            return components.year == year && components.month == month && components.day == day
-        }
-    }
 }
