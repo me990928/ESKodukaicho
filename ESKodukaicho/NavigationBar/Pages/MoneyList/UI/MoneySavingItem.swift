@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct MoneySavingItem: View {
+    @State var tagName: String
+    @State var tagColor: Color
+    @State var money: Int
+    
+    init(tagName: String, tagColor: Color, money: Int) {
+        
+        if tagName.isEmpty {
+            self.tagName = "未分類"
+        } else {
+            self.tagName = tagName
+        }
+        
+        self.tagColor = tagColor
+        self.money = money
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            ListTag(tagName: tagName, tagColor: tagColor).disabled(true)
+            Spacer()
+            Text("\(money)円")
+        }
     }
 }
 
 #Preview {
-    MoneySavingItem()
+    MoneySavingItem(tagName: "", tagColor: .red, money: 1000)
 }
