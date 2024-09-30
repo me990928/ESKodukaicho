@@ -11,6 +11,7 @@ import Foundation
 class CalendarModel {
     
     var calendarArr: [DateComponent] = []
+    var selectedDate: DateComponent = .init(year: DateTranslate(date: Date()).getDateComponents().year?.description ?? "-1", month: DateTranslate(date: Date()).getDateComponents().month?.description ?? "-1", day: DateTranslate(date: Date()).getDateComponents().day?.description ?? "-1")
     
     // 先月の最初最後, 初日から末日, 来月の最初最後
     // １０月の例
@@ -25,7 +26,7 @@ class CalendarModel {
     /// 対象月のカレンダーを作成
     /// - Parameter current: 対象月
     func createCalendar(current: Date){
-//        let current = createDate()
+        // let current = createDate()
         getDateFirstToLast(current: current)
         getDateLastMonth(current: current)
         getDateNextMonth(current: current)
