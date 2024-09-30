@@ -10,7 +10,7 @@ import SwiftUI
 /// カレンダーのメイン
 struct CalendarView: View {
     
-    @State var calendarModel: CalendarModel = .init()
+    @Binding var calendarModel: CalendarModel
     
     @State var currentDate: Date
     @State var year: String = ""
@@ -31,11 +31,13 @@ struct CalendarView: View {
     
     let dateFormatter = DateFormatter()
     
-    init(currentDate: Date){
+    init(currentDate: Date, model: Binding<CalendarModel>){
         
         self.currentDate = currentDate
         
         dateFormatter.dateFormat = "yyyy/MM/dd"
+        
+        self._calendarModel = model
         
     }
     
@@ -102,7 +104,7 @@ struct CalendarView: View {
             
         }.onAppear(){
             calendarModel.createCalendar(current: currentDate)
-        }.background(Color(.FTB_N)).frame(height: 350)
+        }.background(Color(.FTB_N)).frame(height: calendarModel.calendarArr.count > 35 ? 405 : 350)
         .gesture(
             DragGesture()
                 .onEnded { value in
@@ -150,5 +152,6 @@ struct CalendarView: View {
 }
 
 #Preview {
-    CalendarView(currentDate: Date())
+    @Previewable @State var model = CalendarModel()
+    CalendarView(currentDate: Date(), model: .init(projectedValue: $model))
 }

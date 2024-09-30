@@ -42,7 +42,7 @@ class CalendarModel {
         }
         if dateArr[2].0 != 0 {
             for day in dateArr[2].0...dateArr[2].1 {
-                calendarArr.append(DateComponent(year: String(comp.year ?? 0), month: String((comp.month ?? 0) - 1), day: String(day)))
+                calendarArr.append(DateComponent(year: String(comp.year ?? 0), month: String((comp.month ?? 0) + 1), day: String(day)))
             }
         }
         

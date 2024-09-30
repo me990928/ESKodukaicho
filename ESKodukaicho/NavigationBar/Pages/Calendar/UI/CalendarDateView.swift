@@ -98,6 +98,8 @@ struct DateView: View {
             let generator = UIImpactFeedbackGenerator(style: .light)
             generator.prepare()
             generator.impactOccurred()
+            
+            print(isSelectedDay.year, isSelectedDay.month, isSelectedDay.day)
         }
     }
     
