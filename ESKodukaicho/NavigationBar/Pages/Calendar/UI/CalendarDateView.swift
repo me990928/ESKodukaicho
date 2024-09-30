@@ -18,7 +18,7 @@ struct CalendarDateView: View {
     @State var detailData = 0
     @Binding var currentDate: Date
     @Binding var calendarArr: [DateComponent]
-    @State var isSelectedDay: DateComponent = DateComponent(year: "", month: "", day: "")
+    @Binding var isSelectedDay: DateComponent
     
     var body: some View {
         GeometryReader { geo in
