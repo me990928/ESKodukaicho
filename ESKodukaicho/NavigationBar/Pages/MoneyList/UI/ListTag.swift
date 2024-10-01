@@ -15,7 +15,7 @@ struct ListTag: View {
     // 最終的にカラーソースでString
     let color: Color
     
-    init(tagName name: String, tagColor color: Color) {
+    init(tagName name: String, tagColor color: Color, isActive: Bool = false) {
         
         if name.isEmpty {
             self.name = "未分類"
@@ -24,6 +24,8 @@ struct ListTag: View {
         }
         
         self.color = color
+        
+        _isActive = .init(initialValue: isActive)
     }
     
     var body: some View {

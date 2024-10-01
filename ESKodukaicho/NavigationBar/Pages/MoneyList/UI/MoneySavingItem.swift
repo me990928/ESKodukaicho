@@ -25,11 +25,24 @@ struct MoneySavingItem: View {
     }
     
     var body: some View {
-        HStack{
-            ListTag(tagName: tagName, tagColor: tagColor).disabled(true)
-            Spacer()
-            Text("\(money)円")
-        }
+                HStack{
+                    ListTag(tagName: tagName, tagColor: tagColor, isActive: true).disabled(true)
+                    Spacer()
+                    Text("\(money)円")
+                }
+        //        HStack{
+        //            ListTag(tagName: tagName, tagColor: tagColor).disabled(true)
+        //            Text("+\(money)円")
+        //            Spacer()
+        //            Text("合計 30,0000円")
+        //        }
+//        Grid {
+//            GridRow {
+//                ListTag(tagName: tagName, tagColor: tagColor).disabled(true)
+//                Text("+\(money)円")
+//                Text("合計 30,0000円")
+//            }
+//        }
     }
 }
 

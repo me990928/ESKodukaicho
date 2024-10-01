@@ -27,7 +27,7 @@ struct MoneyList: View {
                     
                     VStack {
                         HStack{
-                            Text("支出一覧").font(.headline)
+                            Text("支出入一覧").font(.headline)
                             Spacer()
                         }
                         VStack{
@@ -40,16 +40,16 @@ struct MoneyList: View {
                         
                         VStack {
                             HStack{
-                                Text("支出").font(.caption)
+                                Text("支出入").font(.caption)
                                 Spacer()
                             }.padding(5)
                             // ListItem
                             VStack {
-                                PaymentList().padding(.bottom)
-                                PaymentList().padding(.bottom)
-                                PaymentList().padding(.bottom)
-                                PaymentList().padding(.bottom)
-                                PaymentList().padding(.bottom)
+                                PaymentList1().padding(.bottom)
+                                PaymentList2().padding(.bottom)
+                                PaymentList1().padding(.bottom)
+                                PaymentList2().padding(.bottom)
+                                PaymentList1().padding(.bottom)
                             }.padding(.horizontal)
                         }.background(Color.FTB_N, in: RoundedRectangle(cornerRadius: 10))
                         

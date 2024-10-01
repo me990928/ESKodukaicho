@@ -10,14 +10,18 @@ import SwiftUI
 struct TagList: View {
     
     let items = [
+        ListTag(tagName: "ALL", tagColor: .FTB_BK, isActive: true),
+        ListTag(tagName: "支出", tagColor: .FTB_BK),
+        ListTag(tagName: "収入", tagColor: .FTB_BK),
         ListTag(tagName: "交通費", tagColor: .purple),
         ListTag(tagName: "昼食", tagColor: .purple),
         ListTag(tagName: "ジュース", tagColor: .orange),
         ListTag(tagName: "推し活", tagColor: .green),
-        ListTag(tagName: "開発費", tagColor: .black),
-        ListTag(tagName: "雑費", tagColor: .green),
+        ListTag(tagName: "財布費", tagColor: .black),
+        ListTag(tagName: "引越し費用", tagColor: .yellow),
         ListTag(tagName: "交際費", tagColor: .pink),
-        ListTag(tagName: "無駄遣い", tagColor: .green),
+        ListTag(tagName: "UFJ", tagColor: .blue),
+        ListTag(tagName: "繰越", tagColor: .black),
         ListTag(tagName: "生活費", tagColor: .red)
     ]
     
