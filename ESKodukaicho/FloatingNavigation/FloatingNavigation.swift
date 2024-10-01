@@ -19,6 +19,7 @@ struct FloatingNavigation: View {
     @State var x1Offset: CGFloat = 0
     @State var x2Offset: CGFloat = 0
     @State var x3Offset: CGFloat = 0
+    @State var x4Offset: CGFloat = 0
     
     var body: some View {
         GeometryReader { geometryReader in
@@ -33,6 +34,7 @@ struct FloatingNavigation: View {
                     }.overlay {
                         HStack(){
                             ZStack {
+                                
                                 Button {
                                     isInputOpen.toggle()
                                 } label: {
@@ -40,6 +42,7 @@ struct FloatingNavigation: View {
                                         Image(systemName: "square.and.pencil").font(.body).foregroundStyle(Color("FTB_B"))
                                     }).padding(5)
                                 }.offset(x: x1Offset)
+                                
                                 Button {
                                     isTagsOpen.toggle()
                                 } label: {
@@ -47,13 +50,23 @@ struct FloatingNavigation: View {
                                         Image(systemName: "tag").font(.body).foregroundStyle(Color("FTB_B"))
                                     }).padding(5)
                                 }.offset(x: x2Offset)
+                                
+                                Button {
+                                    isTagsOpen.toggle()
+                                } label: {
+                                    Circle().fill(Color("FTB_N")).overlay(content: {
+                                        Image(systemName: "chart.bar.xaxis").font(.body).foregroundStyle(Color("FTB_B"))
+                                    }).padding(5)
+                                }.offset(x: x3Offset)
+                                
                                 Button {
                                     isSettingsOpen.toggle()
                                 } label: {
                                     Circle().fill(Color("FTB_N")).overlay(content: {
                                         Image(systemName: "gearshape").font(.body).foregroundStyle(Color("FTB_B"))
                                     }).padding(5)
-                                }.offset(x: x3Offset)
+                                }.offset(x: x4Offset)
+                                
                                 Circle().fill(Color("FTB_B")).overlay(content: {
                                     Image(systemName: "plus").font(.body).foregroundStyle(Color("FTB_N")).rotationEffect(isToggle ? .degrees(45) : .degrees(0))
                                 })
@@ -68,15 +81,18 @@ struct FloatingNavigation: View {
                                     }
                                     withAnimation {
                                         if isToggle {
-                                            width = 50 * 3 + 60 + 22
-                                            x1Offset = 60 * 3
-                                            x2Offset = 60 * 2
-                                            x3Offset = 60
+//                                            width = 50 * 3 + 60 + 22
+                                            width = 50 * 3 + 60 + 22 + 58
+                                            x1Offset = 60 * 4
+                                            x2Offset = 60 * 3
+                                            x3Offset = 60 * 2
+                                            x4Offset = 60
                                         } else {
                                             width = 50
                                             x1Offset = 0
                                             x2Offset = 0
                                             x3Offset = 0
+                                            x4Offset = 0
                                         }
                                     }
                                 }
