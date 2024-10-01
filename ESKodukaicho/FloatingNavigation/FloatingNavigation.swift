@@ -15,6 +15,7 @@ struct FloatingNavigation: View {
     @State var isInputOpen: Bool = false
     @State var isSettingsOpen: Bool = false
     @State var isTagsOpen: Bool = false
+    @State var isGraphOpen: Bool = false
     
     @State var x1Offset: CGFloat = 0
     @State var x2Offset: CGFloat = 0
@@ -52,7 +53,7 @@ struct FloatingNavigation: View {
                                 }.offset(x: x2Offset)
                                 
                                 Button {
-                                    isTagsOpen.toggle()
+                                    isGraphOpen.toggle()
                                 } label: {
                                     Circle().fill(Color("FTB_N")).overlay(content: {
                                         Image(systemName: "chart.bar.xaxis").font(.body).foregroundStyle(Color("FTB_B"))
@@ -103,13 +104,15 @@ struct FloatingNavigation: View {
                 }
             }.padding(.leading)
                 .sheet(isPresented: $isInputOpen) {
-                    InputView()
+                    Text("Input")
                 }
                 .sheet(isPresented: $isTagsOpen) {
-                    TagsView()
+                    TagSheet()
                 }
                 .sheet(isPresented: $isSettingsOpen) {
-                    SettingsView()
+                    Text("Setting")
+                }.sheet(isPresented: $isGraphOpen) {
+                    Text("Graph")
                 }
         }
     }
