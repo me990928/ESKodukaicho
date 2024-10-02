@@ -29,47 +29,24 @@ struct FloatingNavigation: View {
                 HStack{
                     Rectangle().fill(.clear).frame(width: geometryReader.size.width, height: 50).overlay {
                         HStack {
-                            Rectangle().frame(width: width, height: 50).foregroundColor(Color("FTB_BK")).clipShape(RoundedRectangle(cornerRadius: 90))
+                            Rectangle().frame(width: width, height: 50).foregroundColor(.mainColor2).clipShape(RoundedRectangle(cornerRadius: 90))
                             Spacer()
                         }
                     }.overlay {
                         HStack(){
                             ZStack {
                                 
-                                Button {
-                                    isInputOpen.toggle()
-                                } label: {
-                                    Circle().fill(Color("FTB_N")).overlay(content: {
-                                        Image(systemName: "square.and.pencil").font(.body).foregroundStyle(Color("FTB_B"))
-                                    }).padding(5)
-                                }.offset(x: x1Offset)
+                                FloatingNavigationButton(isOpen: $isInputOpen, xOffset: $x1Offset, iconName: "square.and.pencil")
                                 
-                                Button {
-                                    isTagsOpen.toggle()
-                                } label: {
-                                    Circle().fill(Color("FTB_N")).overlay(content: {
-                                        Image(systemName: "tag").font(.body).foregroundStyle(Color("FTB_B"))
-                                    }).padding(5)
-                                }.offset(x: x2Offset)
+                                FloatingNavigationButton(isOpen: $isTagsOpen, xOffset: $x2Offset, iconName: "tag")
                                 
-                                Button {
-                                    isGraphOpen.toggle()
-                                } label: {
-                                    Circle().fill(Color("FTB_N")).overlay(content: {
-                                        Image(systemName: "chart.bar.xaxis").font(.body).foregroundStyle(Color("FTB_B"))
-                                    }).padding(5)
-                                }.offset(x: x3Offset)
+                                FloatingNavigationButton(isOpen: $isGraphOpen, xOffset: $x3Offset, iconName: "chart.bar.xaxis")
                                 
-                                Button {
-                                    isSettingsOpen.toggle()
-                                } label: {
-                                    Circle().fill(Color("FTB_N")).overlay(content: {
-                                        Image(systemName: "gearshape").font(.body).foregroundStyle(Color("FTB_B"))
-                                    }).padding(5)
-                                }.offset(x: x4Offset)
+                                FloatingNavigationButton(isOpen: $isSettingsOpen, xOffset: $x4Offset, iconName: "gearshape")
                                 
-                                Circle().fill(Color("FTB_B")).overlay(content: {
-                                    Image(systemName: "plus").font(.body).foregroundStyle(Color("FTB_N")).rotationEffect(isToggle ? .degrees(45) : .degrees(0))
+                                
+                                Circle().fill(Color(.accent)).overlay(content: {
+                                    Image(systemName: "plus").font(.headline).foregroundStyle(Color(.black)).rotationEffect(isToggle ? .degrees(45) : .degrees(0))
                                 })
                                 .onTapGesture {
                                     
@@ -77,12 +54,12 @@ struct FloatingNavigation: View {
                                     generator.prepare()
                                     generator.impactOccurred()
                                     
-                                    withAnimation{
+                                    withAnimation(.bouncy(duration: 0.2)){
                                         isToggle.toggle()
                                     }
-                                    withAnimation {
+                                    withAnimation(.easeIn(duration: 0.2)) {
                                         if isToggle {
-//                                            width = 50 * 3 + 60 + 22
+                                            //                                            width = 50 * 3 + 60 + 22
                                             width = 50 * 3 + 60 + 22 + 58
                                             x1Offset = 60 * 4
                                             x2Offset = 60 * 3
@@ -119,9 +96,24 @@ struct FloatingNavigation: View {
 }
 
 #Preview {
-    FloatingNavigation()
+    VStack{
+        FloatingNavigation()
+    }.background(Color.base)
 }
 
-struct FloatingNavigationButton {
+struct FloatingNavigationButton: View {
     
+    @Binding var isOpen: Bool
+    @Binding var xOffset: CGFloat
+    let iconName: String
+    
+    var body: some View {
+        Button {
+            isOpen.toggle()
+        } label: {
+            Circle().fill(Color(.main)).overlay(content: {
+                Image(systemName: iconName).font(.body).foregroundStyle(Color(.white))
+            }).padding(5)
+        }.offset(x: xOffset)
+    }
 }
