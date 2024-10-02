@@ -17,7 +17,7 @@ struct MoneyListHeader: View {
                     Spacer()
                     Text("300,000円")
                 }
-                Divider().background(Color.FTB_B)
+                Divider()
                 HStack{
                     Text("支出").font(.headline)
                     Spacer()

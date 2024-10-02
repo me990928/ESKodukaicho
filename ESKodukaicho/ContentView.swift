@@ -35,7 +35,7 @@ struct ContentView: View {
                 Spacer()
                 NavigationBar(isCurrent: $isCurrent)
             }
-        }.background(Color.FTB_BK)
+        }.background(Color.base)
 //        NavigationSplitView {
 //            List {
 //                ForEach(items) { item in

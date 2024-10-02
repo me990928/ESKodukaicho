@@ -101,7 +101,7 @@ struct CalendarView: View {
         }.onAppear(){
             calendarModel.createCalendar(current: currentDate)
             print(calendarModel.selectedDate)
-        }.background(Color(.FTB_N)).frame(height: calendarModel.calendarArr.count > 35 ? 405 : 350)
+        }.background(Color(.main)).frame(height: calendarModel.calendarArr.count > 35 ? 405 : 350)
         .gesture(
             DragGesture()
                 .onEnded { value in

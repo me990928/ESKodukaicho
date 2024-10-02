@@ -18,7 +18,7 @@ struct NavigationBar: View {
                 FloatingNavigation()
                 HStack{
                     Spacer()
-                    Rectangle().fill(Color.FTB_B).frame(width: geometry.size.width * 0.7, height: 60).clipShape(RoundedRectangle(cornerRadius: 10))
+                    Rectangle().fill(Color.main).frame(width: geometry.size.width * 0.7, height: 60).clipShape(RoundedRectangle(cornerRadius: 10))
                         .background(Color.clear,
                            in: RoundedRectangle(cornerRadius: 8, style: .continuous)
                         ).padding(20).overlay {
@@ -58,7 +58,7 @@ struct NavigationBarButton: View {
                 generator.impactOccurred()
             }
             Text(caption).font(.caption)
-        }.foregroundStyle(isCurrent == id ? Color.FTB_BK : Color.white)
+        }.foregroundStyle(isCurrent == id ? .white : .gray)
         
     }
 }

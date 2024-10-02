@@ -33,12 +33,11 @@ struct PaymentList1: View {
                         Image(systemName: "chevron.down").font(.caption).rotationEffect(.degrees(isPresented ? 180 : 0))
                     }.font(.headline)
                 }
-            }.padding(.vertical).contentShape(Rectangle()).onTapGesture {
-                withAnimation {
+            }.foregroundStyle(.white).padding(.vertical).contentShape(Rectangle()).onTapGesture {
+                withAnimation(.easeIn(duration: 0.2)) {
                     isPresented.toggle()
+                    isExpanded.toggle()
                 }
-                
-                isExpanded.toggle()
             }
             if isExpanded {
                 VStack{
@@ -56,7 +55,7 @@ struct PaymentList1: View {
                         Text("メモの内容を書き込んで下さいメモの内容を書き込んで下さいメモの内容を書き込んで下さい\n(最大N文字)")
                         Spacer()
                     }
-                }.padding().background(Color.FTB_BK, in: RoundedRectangle(cornerRadius: 10))
+                }.padding().background(Color.mainColor2, in: RoundedRectangle(cornerRadius: 10)).foregroundStyle(.black)
             }
         }
     }
@@ -99,12 +98,12 @@ struct PaymentList2: View {
                         Image(systemName: "chevron.down").font(.caption).rotationEffect(.degrees(isPresented ? 180 : 0))
                     }.font(.headline)
                 }
-            }.padding(.vertical).contentShape(Rectangle()).onTapGesture {
-                withAnimation {
+            }.foregroundStyle(.white).padding(.vertical).contentShape(Rectangle()).onTapGesture {
+                withAnimation(.easeIn(duration: 0.2)) {
                     isPresented.toggle()
+                    isExpanded.toggle()
                 }
                 
-                isExpanded.toggle()
             }
             if isExpanded {
                 VStack{
@@ -122,7 +121,7 @@ struct PaymentList2: View {
                         Text("メモの内容を書き込んで下さいメモの内容を書き込んで下さいメモの内容を書き込んで下さい\n(最大N文字)")
                         Spacer()
                     }
-                }.padding().background(Color.FTB_BK, in: RoundedRectangle(cornerRadius: 10))
+                }.padding().background(Color.mainColor2, in: RoundedRectangle(cornerRadius: 10)).foregroundStyle(.black)
             }
         }
     }
@@ -164,12 +163,12 @@ struct PaymentList3: View {
                         Image(systemName: "chevron.down").font(.caption).rotationEffect(.degrees(isPresented ? 180 : 0))
                     }.font(.headline)
                 }
-            }.padding(.vertical).contentShape(Rectangle()).onTapGesture {
-                withAnimation {
+            }.foregroundStyle(.white).padding(.vertical).contentShape(Rectangle()).onTapGesture {
+                withAnimation(.easeIn(duration: 0.2)) {
                     isPresented.toggle()
+                    isExpanded.toggle()
                 }
                 
-                isExpanded.toggle()
             }
             if isExpanded {
                 VStack{
@@ -187,7 +186,7 @@ struct PaymentList3: View {
                         Text("メモの内容を書き込んで下さいメモの内容を書き込んで下さいメモの内容を書き込んで下さい\n(最大N文字)")
                         Spacer()
                     }
-                }.padding().background(Color.FTB_BK, in: RoundedRectangle(cornerRadius: 10))
+                }.padding().background(Color.mainColor2, in: RoundedRectangle(cornerRadius: 10)).foregroundStyle(.black)
             }
         }
     }

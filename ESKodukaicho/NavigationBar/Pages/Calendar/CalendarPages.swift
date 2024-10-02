@@ -23,21 +23,21 @@ struct CalendarPages: View {
                                 Spacer()
                                 Text("2,000円")
                             }
-                            Divider().background(Color.FTB_N)
+                            Divider()
                             HStack{
                                 Text("収入：")
                                 Spacer()
                                 Text("2,000円")
                             }
-                            Divider().background(Color.FTB_N)
+                            Divider()
                             HStack{
                                 Text("差引額：")
                                 Spacer()
                                 Text("0円")
                             }
-                            Divider().background(Color.FTB_N)
+                            Divider()
                             Spacer()
-                        }.frame(height: geometry.size.height - 340).padding().font(.title3).foregroundStyle(.white)
+                        }.frame(height: geometry.size.height - 340).padding().font(.title3)
                     }.disabled(calendarModel.calendarArr.count <= 35).onChange(of: calendarModel.calendarArr.count) { oldValue, newValue in
                         reader.scrollTo("top", anchor: UnitPoint(x: 0, y: 10))
                     }

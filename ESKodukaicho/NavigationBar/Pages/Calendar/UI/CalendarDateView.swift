@@ -69,9 +69,9 @@ struct DateView: View {
                 if date.month == DateTranslate(date: currentDate).getDateComponents().month?.description ?? "0" && !isSelected {
                     Text(date.day).frame(width: width).foregroundStyle(current ? .white : Color(.white)).bold(current).frame(height: 40)
                 } else if isSelected {
-                    Text(date.day).frame(width: width).foregroundStyle(current ? .white : Color(.FTB_N)).bold(isSelected).frame(height: 40)
+                    Text(date.day).frame(width: width).foregroundStyle(current ? .white : Color(.black)).bold(isSelected).frame(height: 40)
                 } else {
-                    Text(date.day).frame(width: width).foregroundStyle(.FTB_B).frame(height: 40)
+                    Text(date.day).frame(width: width).foregroundStyle(.gray).frame(height: 40)
                 }
             }
             // 簡易的に書き込めるスペース
@@ -116,3 +116,7 @@ struct DateView: View {
     }
     
 }
+
+#Preview(body: {
+    CalendarPages()
+})
