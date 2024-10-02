@@ -31,7 +31,7 @@ struct MoneyList: View {
                     // PaymentList Start
                     VStack {
                         HStack{
-                            Text("支出入一覧").font(.headline)
+                            Text("収支一覧").font(.headline)
                             Spacer()
                             Image(systemName: "chevron.down").font(.caption).rotationEffect(.degrees(isPresentedPaymentList ? 180 : 0))
                         }.contentShape(Rectangle()).onTapGesture {
@@ -53,7 +53,7 @@ struct MoneyList: View {
                             
                             VStack {
                                 HStack{
-                                    Text("支出入").font(.caption).foregroundStyle(.white)
+                                    Text("収支").font(.caption).foregroundStyle(.white)
                                     Spacer()
                                 }.padding(5)
                                 // ListItem
