@@ -26,10 +26,12 @@ struct MoneySavingList: View {
             }
             
             if isExpanded {
-                MoneySavingItem(tagName: "財布", tagColor: .red, money: 10000)
-                MoneySavingItem(tagName: "UFJ", tagColor: .blue, money: 10000)
-                MoneySavingItem(tagName: "引越し費用", tagColor: .yellow, money: 50000)
-                MoneySavingItem(tagName: "繰越", tagColor: .black, money: 1000)
+                VStack{
+                    MoneySavingItem(tagName: "財布", tagColor: .red, money: 10000)
+                    MoneySavingItem(tagName: "UFJ", tagColor: .blue, money: 10000)
+                    MoneySavingItem(tagName: "引越し費用", tagColor: .yellow, money: 50000)
+                    MoneySavingItem(tagName: "繰越", tagColor: .black, money: 1000)
+                }.padding().background(Color.main, in: RoundedRectangle(cornerRadius: 10)).foregroundStyle(.white)
             }
             
         }
