@@ -40,7 +40,7 @@ struct TagCreateUpdate: View {
             Button {
                 
             } label: {
-                Text(buttonText)
+                Text(buttonText).foregroundStyle(.black)
             }.buttonStyle(.borderedProminent)
             
             

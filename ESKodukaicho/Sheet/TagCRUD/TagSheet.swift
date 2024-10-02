@@ -22,6 +22,9 @@ struct TagSheet: View {
         
     ]
     
+    var isIPhone: Bool {
+        UIDevice.current.userInterfaceIdiom == .phone
+    }
     
     var body: some View {
         NavigationSplitView {
@@ -29,7 +32,7 @@ struct TagSheet: View {
                 Section(header: Text("タグ一覧")){
                     ForEach(tags, id: \.self.tagName) { item in
                         NavigationLink(item.tagName) {
-                            TagCreateUpdate(buttonText: "更新", tagName: item.tagName, tagColor: item.tagColor, selectedGenre: item.genre)
+                            TagCreateUpdate(buttonText: "更新", tagName: item.tagName, tagColor: item.tagColor, selectedGenre: item.genre).background(.base)
                         }
                     }.onDelete { IndexSet in
                         deleteItem(at: IndexSet)
@@ -37,7 +40,7 @@ struct TagSheet: View {
                 }
                 
             }.navigationDestination(isPresented: $isAddItem, destination: {
-                TagCreateUpdate()
+                TagCreateUpdate().background(.base)
             }).toolbar {
                 ToolbarItem {
                     EditButton()

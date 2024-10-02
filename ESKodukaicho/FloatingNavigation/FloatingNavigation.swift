@@ -81,7 +81,7 @@ struct FloatingNavigation: View {
                 }
             }.padding(.leading)
                 .sheet(isPresented: $isInputOpen) {
-                    Text("Input")
+                    InputView()
                 }
                 .sheet(isPresented: $isTagsOpen) {
                     TagSheet()
