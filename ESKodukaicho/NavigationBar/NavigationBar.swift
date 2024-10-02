@@ -15,7 +15,7 @@ struct NavigationBar: View {
         GeometryReader { geometry in
             VStack(spacing: 0){
                 Spacer()
-                FloatingNavigation()
+                FloatingNavigation().clipped().shadow(radius: 5)
                 HStack{
                     Spacer()
                     Rectangle().fill(Color.main).frame(width: geometry.size.width * 0.7, height: 60).clipShape(RoundedRectangle(cornerRadius: 10))
@@ -31,7 +31,7 @@ struct NavigationBar: View {
                             }
                         }
                     Spacer()
-                }
+                }.clipped().shadow(radius: 10)
             }.ignoresSafeArea()
         }
     }
