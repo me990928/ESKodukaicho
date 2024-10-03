@@ -12,6 +12,8 @@ struct PaymentList1: View {
     @State var isPresented: Bool = false
     @State var isExpanded: Bool = false
     
+    @State var isFixEditorOpen: Bool = false
+    
     var body: some View {
         VStack(spacing: 0){
             HStack {
@@ -47,6 +49,7 @@ struct PaymentList1: View {
                         Button(action: {
                             // 編集内容
                             // タグ、メモ、タイトル等
+                            isFixEditorOpen.toggle()
                         }) {
                             Image(systemName: "square.and.pencil")
                         }.padding(3)
@@ -56,6 +59,9 @@ struct PaymentList1: View {
                         Spacer()
                     }
                 }.padding().background(Color.mainColor2, in: RoundedRectangle(cornerRadius: 10)).foregroundStyle(.black)
+                    .sheet(isPresented: $isFixEditorOpen) {
+                        InputView(buttonString: "更新")
+                    }
             }
         }
     }
@@ -76,6 +82,7 @@ struct PaymentList2: View {
     
     @State var isPresented: Bool = false
     @State var isExpanded: Bool = false
+    @State var isFixEditorOpen: Bool = false
     
     var body: some View {
         VStack(spacing: 0){
@@ -113,6 +120,7 @@ struct PaymentList2: View {
                         Button(action: {
                             // 編集内容
                             // タグ、メモ、タイトル等
+                            isFixEditorOpen.toggle()
                         }) {
                             Image(systemName: "square.and.pencil")
                         }.padding(3)
@@ -122,6 +130,9 @@ struct PaymentList2: View {
                         Spacer()
                     }
                 }.padding().background(Color.mainColor2, in: RoundedRectangle(cornerRadius: 10)).foregroundStyle(.black)
+                    .sheet(isPresented: $isFixEditorOpen) {
+                        InputView(buttonString: "更新")
+                    }
             }
         }
     }
@@ -141,6 +152,7 @@ struct PaymentList3: View {
     
     @State var isPresented: Bool = false
     @State var isExpanded: Bool = false
+    @State var isFixEditorOpen: Bool = false
     
     var body: some View {
         VStack(spacing: 0){
@@ -178,6 +190,7 @@ struct PaymentList3: View {
                         Button(action: {
                             // 編集内容
                             // タグ、メモ、タイトル等
+                            isFixEditorOpen.toggle()
                         }) {
                             Image(systemName: "square.and.pencil")
                         }.padding(3)
@@ -187,6 +200,9 @@ struct PaymentList3: View {
                         Spacer()
                     }
                 }.padding().background(Color.mainColor2, in: RoundedRectangle(cornerRadius: 10)).foregroundStyle(.black)
+                    .sheet(isPresented: $isFixEditorOpen) {
+                        InputView(buttonString: "更新")
+                    }
             }
         }
     }
