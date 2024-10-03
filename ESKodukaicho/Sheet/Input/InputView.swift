@@ -13,14 +13,18 @@ struct InputView: View {
     @State var genre: String = "支出"
     @State var tag: String = ""
     @State var memo: String?
+    @State var buttonString: String = "登録"
     
     @FocusState var textField: Bool
     
     var body: some View {
         let placeholder = "タップしてメモを入力してください"
-        ZStack{
             ScrollView {
                 VStack(){
+                    HStack{
+                        Text("収支入力画面").font(.title).bold()
+                        Spacer()
+                    }
                     HStack{
                         Text("タイトル").font(.headline)
                         TextField("タイトル", text: $title).multilineTextAlignment(.trailing)
@@ -57,7 +61,7 @@ struct InputView: View {
                             }
                         }
                     }.padding().background(Color.main, in: RoundedRectangle(cornerRadius: 10)).foregroundStyle(.white)
-                    Button("登録") {
+                    Button(buttonString) {
                         
                     }.padding(.vertical).buttonStyle(.borderedProminent)
                 }.padding()
@@ -67,12 +71,6 @@ struct InputView: View {
                         textField = false
                     }
                 }
-            
-            VStack{
-                Spacer()
-                Text("収支入力画面").font(.callout).foregroundStyle(.gray)
-            }
-        }
     }
 }
 
