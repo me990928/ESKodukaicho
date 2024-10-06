@@ -33,6 +33,12 @@ struct BreakdownOfRevenue: View {
         .init(id: UUID().uuidString, name: "未分類", color: .gray)
     ]
     
+    let categories: [String] = [
+        "収入",
+        "支出",
+        "貯金"
+    ]
+    
     var body: some View {
         VStack {
             HStack {
@@ -79,6 +85,14 @@ struct BreakdownOfRevenue: View {
                     }
                     Spacer()
                 }
+                
+                VStack(alignment: .leading){
+                    Divider()
+                    Text("収入合計: 1999999円").font(.title2)
+                    Text("支出合計: 1999999円").font(.title2)
+                    Text("貯金合計: 1999999円").font(.title2)
+                }
+                
             }
             
             Spacer()
