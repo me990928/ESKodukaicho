@@ -8,7 +8,7 @@
 import SwiftUI
 import Charts
 
-struct BarView: View {
+struct EarningsPerPeriod: View {
     
     @State var isOpenError: Bool = false
     
@@ -103,7 +103,7 @@ struct BarView: View {
 }
 
 #Preview {
-    BarView()
+                        EarningsPerPeriod()
 }
 
 struct BarData: Identifiable {
