@@ -10,6 +10,8 @@ import Charts
 
 struct CategoryView: View {
     
+    @State var isOpenError: Bool = false
+    
     let data: [CategoryData] = [
         .init(tags: "ジュース", price: 1500, color: .red),
         .init(tags: "昼飯", price: 1200, color: .blue),
@@ -21,7 +23,9 @@ struct CategoryView: View {
     var body: some View {
         VStack {
             HStack {
-                Button(action: {}) {
+                Button(action: {
+                    isOpenError.toggle()
+                }) {
                     Image(systemName: "chevron.left")
                 }
                 Spacer()
@@ -33,9 +37,20 @@ struct CategoryView: View {
             }.font(.title).bold()
             Divider()
             
-            Chart(data, id: \.tags) { data in
-                SectorMark(angle: .value("price", data.price), innerRadius: .ratio(0.5), outerRadius: .inset(50), angularInset: 1).foregroundStyle(data.color)
-            }.frame(height: 300)
+            ZStack {
+                
+                Chart(data, id: \.tags) { data in
+                    SectorMark(angle: .value("price", data.price), innerRadius: .ratio(0.5), outerRadius: .inset(50), angularInset: 1).foregroundStyle(data.color)
+                }.frame(height: 300)
+                
+                if isOpenError {
+                    Rectangle().fill(Color.clear).frame(height: 290).background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10)).overlay {
+                        Text("2024年9月のデータが存在しません")
+                    }
+                }
+            }
+            
+            Divider()
             
             ForEach(data, id: \.tags){ data in
                 HStack {
