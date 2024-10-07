@@ -65,7 +65,7 @@ struct EarningsPerPeriod: View {
                 Button(action: {}) {
                     Image(systemName: "chevron.right")
                 }
-            }.font(.title).bold()
+            }.font(.title2).bold()
             Divider()
             
             ZStack {

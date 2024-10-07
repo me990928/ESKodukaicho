@@ -89,7 +89,7 @@ struct FloatingNavigation: View {
                 .sheet(isPresented: $isSettingsOpen) {
                     Text("Setting")
                 }.sheet(isPresented: $isGraphOpen) {
-                    Text("Graph")
+                    GraphView()
                 }
         }
     }
