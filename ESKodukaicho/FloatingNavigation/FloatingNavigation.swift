@@ -87,7 +87,7 @@ struct FloatingNavigation: View {
                     TagSheet()
                 }
                 .sheet(isPresented: $isSettingsOpen) {
-                    Text("Setting")
+                    SettingsView()
                 }.sheet(isPresented: $isGraphOpen) {
                     GraphView()
                 }
