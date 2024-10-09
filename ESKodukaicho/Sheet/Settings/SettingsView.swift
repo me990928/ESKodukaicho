@@ -8,8 +8,49 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @State var monthStartDay: Int = 1
+    @State var isDeleteAll: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationSplitView {
+            List{
+                Section(header: Text("カレンダー")) {
+                    Picker("月の開始日", selection: $monthStartDay) {
+                        ForEach(1..<32) { day in
+                            Text("\(day)日").tag(day)
+                        }
+                    }
+                }
+                
+                Section(header: Text("収支")) {
+                    NavigationLink("収支の入力通知") {
+                        OptionNotificationView().navigationTitle("収支の入力通知")
+                    }
+                    NavigationLink("タグへの予算割") {
+                        
+                    }
+                    NavigationLink("収支メモ") {
+                        
+                    }
+                }
+                
+                Section(header: Text("システム")) {
+                    Button("収支のリセット", role: .destructive){
+                        isDeleteAll.toggle()
+                    }
+                }.alert("全ての収支を削除しますか？", isPresented: $isDeleteAll) {
+                    Button("キャンセル", role: .cancel){}
+                    Button("削除する", role: .destructive){
+                        print("delete all")
+                    }
+                } message: {
+                    Text("削除したデータを復元することはできません。")
+                }
+            }.navigationTitle("設定")
+        } detail: {
+            Text("No selection")
+        }
     }
 }
 
