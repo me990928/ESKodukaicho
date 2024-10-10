@@ -25,13 +25,13 @@ struct SettingsView: View {
                 
                 Section(header: Text("収支")) {
                     NavigationLink("収支の入力通知") {
-                        OptionNotificationView().navigationTitle("収支の入力通知")
+                        OptionNotificationView().navigationTitle("収支の入力通知").interactiveDismissDisabled()
                     }
                     NavigationLink("タグへの予算割") {
-                        BudgetAllocationTagsView().navigationTitle("タグへの予算割")
+                        BudgetAllocationTagsView().navigationTitle("タグへの予算割").interactiveDismissDisabled()
                     }
                     NavigationLink("収支メモ一覧") {
-                        
+                        MemoPageView().navigationTitle("収支メモ一覧").interactiveDismissDisabled()
                     }
                 }
                 

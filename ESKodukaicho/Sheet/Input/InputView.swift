@@ -16,6 +16,7 @@ struct InputView: View {
     @State var buttonString: String = "登録"
     
     @FocusState var textField: Bool
+    @FocusState var titleField: Bool
     
     var body: some View {
         let placeholder = "タップしてメモを入力してください"
@@ -27,7 +28,7 @@ struct InputView: View {
                     }
                     HStack{
                         Text("タイトル").font(.headline)
-                        TextField("タイトル", text: $title).multilineTextAlignment(.trailing)
+                        TextField("タイトル", text: $title).multilineTextAlignment(.trailing).focused($titleField)
                     }
                     DatePicker("登録日時", selection: $registDate).font(.headline)
                     HStack{
@@ -69,6 +70,9 @@ struct InputView: View {
                 .onTapGesture {
                     if self.textField {
                         textField = false
+                    }
+                    if self.titleField {
+                        titleField = false
                     }
                 }
     }
