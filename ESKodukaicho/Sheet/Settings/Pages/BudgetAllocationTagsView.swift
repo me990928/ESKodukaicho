@@ -92,7 +92,6 @@ struct BudgetAllocationListItem: View {
                     }
                     if !budget.isEmpty && !isFocused {
                         budget = "\(budget)円"
-                        print("test")
                     }
                 }
                 .onAppear() {
