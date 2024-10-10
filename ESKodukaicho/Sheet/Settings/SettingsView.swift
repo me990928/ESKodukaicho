@@ -28,9 +28,9 @@ struct SettingsView: View {
                         OptionNotificationView().navigationTitle("収支の入力通知")
                     }
                     NavigationLink("タグへの予算割") {
-                        
+                        BudgetAllocationTagsView().navigationTitle("タグへの予算割")
                     }
-                    NavigationLink("収支メモ") {
+                    NavigationLink("収支メモ一覧") {
                         
                     }
                 }

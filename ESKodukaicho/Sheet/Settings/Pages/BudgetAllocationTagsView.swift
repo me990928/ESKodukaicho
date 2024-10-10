@@ -37,7 +37,7 @@ struct BudgetAllocationTagsView: View {
 //                        Spacer()
 //                        Text("30000円")
 //                    }.font(.headline)
-                    MonthBudgetUI(budget: $budget)
+                    MonthBudgetUI(budget: $budget).foregroundStyle(.white)
                     HStack{
                         Text("支出タグ")
                         Picker("支出タグ", selection: .constant("")) {
@@ -48,11 +48,11 @@ struct BudgetAllocationTagsView: View {
                             Text("趣味").tag("趣味")
                         }
                         Spacer()
-                    }
+                    }.foregroundStyle(.white)
                 }.padding().background(Color.main , in: RoundedRectangle(cornerRadius: 10))
                 Button("追加") {}.buttonStyle(.borderedProminent).padding()
                 
-                BudgetAllocationTotal().padding(.bottom)
+                BudgetAllocationTotal().padding(.bottom).foregroundStyle(.white)
                 
                 if isPresented {
                     // 表示するものがなければ非表示にする
@@ -62,7 +62,7 @@ struct BudgetAllocationTagsView: View {
                         BudgetAllocationListItem(label: "食費")
                         BudgetAllocationListItem(label: "衣類")
                         BudgetAllocationListItem(label: "趣味")
-                    }.padding().background(Color.main , in: RoundedRectangle(cornerRadius: 10))
+                    }.padding().background(Color.main , in: RoundedRectangle(cornerRadius: 10)).foregroundStyle(.white)
                 }
                 
                 Spacer()
@@ -86,11 +86,13 @@ struct BudgetAllocationListItem: View {
             Text(label)
             Spacer()
             ZStack{
-                TextField("円", text: $budget).focused($isFocused).opacity(isFocused || budget.isEmpty ? 1 : 0).multilineTextAlignment(.trailing).keyboardType(.decimalPad)
-                if !isFocused && !budget.isEmpty {
-                    HStack{
-                        Spacer()
-                        Text("\(budget)円")
+                TextField("円", text: $budget).focused($isFocused).multilineTextAlignment(.trailing).keyboardType(.decimalPad).onChange(of: isFocused) {
+                    if isFocused && budget.last == "円" {
+                        budget.removeLast()
+                    }
+                    if !budget.isEmpty && !isFocused {
+                        budget = "\(budget)円"
+                        print("test")
                     }
                 }
             }
@@ -107,11 +109,13 @@ struct MonthBudgetUI: View {
         HStack{
             Text("今月の予算")
             ZStack{
-                TextField("円", text: $budget).focused($isFocused).opacity(isFocused || budget.isEmpty ? 1 : 0).multilineTextAlignment(.trailing).keyboardType(.decimalPad)
-                if !isFocused && !budget.isEmpty {
-                    HStack{
-                        Spacer()
-                        Text("\(budget)円")
+                TextField("円", text: $budget).focused($isFocused).multilineTextAlignment(.trailing).keyboardType(.decimalPad).onChange(of: isFocused) {
+                    if isFocused && budget.last == "円" {
+                        budget.removeLast()
+                    }
+                    if !budget.isEmpty && !isFocused {
+                        budget = "\(budget)円"
+                        print("test")
                     }
                 }
             }
