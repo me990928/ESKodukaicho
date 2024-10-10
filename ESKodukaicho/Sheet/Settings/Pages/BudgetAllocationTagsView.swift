@@ -61,7 +61,7 @@ struct BudgetAllocationTagsView: View {
                         BudgetAllocationListItem(label: "交通費")
                         BudgetAllocationListItem(label: "食費")
                         BudgetAllocationListItem(label: "衣類")
-                        BudgetAllocationListItem(label: "趣味")
+                        BudgetAllocationListItem(label: "趣味", budget: "1299")
                     }.padding().background(Color.main , in: RoundedRectangle(cornerRadius: 10)).foregroundStyle(.white)
                 }
                 
@@ -93,6 +93,11 @@ struct BudgetAllocationListItem: View {
                     if !budget.isEmpty && !isFocused {
                         budget = "\(budget)円"
                         print("test")
+                    }
+                }
+                .onAppear() {
+                    if !budget.isEmpty {
+                        budget = "\(budget)円"
                     }
                 }
             }
