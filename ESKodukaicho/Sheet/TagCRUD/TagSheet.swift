@@ -32,7 +32,7 @@ struct TagSheet: View {
                 Section(header: Text("タグ一覧")){
                     ForEach(tags, id: \.self.tagName) { item in
                         NavigationLink(item.tagName) {
-                            TagCreateUpdate(buttonText: "更新", tagName: item.tagName, tagColor: item.tagColor, selectedGenre: item.genre).background(.base).navigationTitle("\(item.tagName)タグの情報")
+                            TagCreateUpdate(buttonText: "更新", tagName: item.tagName, tagColor: item.tagColor, selectedGenre: item.genre).background(.base).navigationTitle("\(item.tagName)タグの情報").interactiveDismissDisabled()
                         }.navigationTitle("タグ管理")
                     }.onDelete { IndexSet in
                         deleteItem(at: IndexSet)

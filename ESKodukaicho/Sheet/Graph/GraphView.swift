@@ -20,16 +20,16 @@ struct GraphView: View {
         NavigationSplitView {
             List{
                 NavigationLink("カテゴリ別の支出割合") {
-                    CategoryView().navigationTitle("カテゴリ別の支出割合")
+                    CategoryView().navigationTitle("カテゴリ別の支出割合").interactiveDismissDisabled()
                 }
                 NavigationLink("期間ごとの支出・収入") {
-                    EarningsPerPeriod().navigationTitle("期間ごとの支出・収入")
+                    EarningsPerPeriod().navigationTitle("期間ごとの支出・収入").interactiveDismissDisabled()
                 }
                 NavigationLink("収入と支出の内訳") {
-                    BreakdownOfRevenue().navigationTitle("収入と支出の内訳")
+                    BreakdownOfRevenue().navigationTitle("収入と支出の内訳").interactiveDismissDisabled()
                 }
                 NavigationLink("特定の支出傾向の発見") {
-                    RevenueScatterPlot().navigationTitle("特定の支出傾向の発見")
+                    RevenueScatterPlot().navigationTitle("特定の支出傾向の発見").interactiveDismissDisabled()
                 }
             }.navigationTitle("分析")
         } detail: {
