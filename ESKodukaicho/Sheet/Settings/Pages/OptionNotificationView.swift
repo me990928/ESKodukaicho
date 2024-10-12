@@ -11,7 +11,7 @@ struct OptionNotificationView: View {
     
     @AppStorage("isNotification") var isNotificationStorage: Bool = false
     @AppStorage("isNotificationDate") var notificationTime: Date = .init()
-    @AppStorage("isNotificationId") var notificationId: String = UUID().uuidString
+    let notificationId: String = "dailyNotification"
     var body: some View {
         VStack{
             List{
@@ -20,6 +20,7 @@ struct OptionNotificationView: View {
             }
         }.onAppear(){
             requestNotificationPermission()
+//            checkPendingNotifications()
         }.onChange(of: notificationTime) { oldValue, newValue in
             if isNotificationStorage, !oldValue.description.isEqual(newValue.description){
                 scheduleNotification(at: newValue)
@@ -27,6 +28,9 @@ struct OptionNotificationView: View {
         }.onChange(of: isNotificationStorage) { oldValue, newValue in
             if !oldValue, newValue {
                 scheduleNotification(at: notificationTime)
+            }
+            if !isNotificationStorage {
+                scheduleDeleteNotification()
             }
         }
     }
@@ -63,9 +67,21 @@ struct OptionNotificationView: View {
                 print("Error scheduling notification: \(error.localizedDescription)")
             }
         }
-        
-        
     }
+    
+    func scheduleDeleteNotification(){
+        let lcNotificationCenter = UNUserNotificationCenter.current()
+        lcNotificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationId, "059872E8-36E8-4D93-AA01-78F367AF831D", "70A806E3-0450-4B8C-AC72-6010C1C4577B", "7B9615F8-41D2-461A-A245-6361B9488C26"])
+    }
+    
+    // debug用
+//    func checkPendingNotifications() {
+//        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+//            for request in requests {
+//                print("通知ID: \(request.identifier), タイトル: \(request.content.title), 本文: \(request.content.body)")
+//            }
+//        }
+//    }
 }
 
 #Preview {
