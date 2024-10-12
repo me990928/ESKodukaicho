@@ -71,7 +71,7 @@ struct OptionNotificationView: View {
     
     func scheduleDeleteNotification(){
         let lcNotificationCenter = UNUserNotificationCenter.current()
-        lcNotificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationId, "059872E8-36E8-4D93-AA01-78F367AF831D", "70A806E3-0450-4B8C-AC72-6010C1C4577B", "7B9615F8-41D2-461A-A245-6361B9488C26"])
+        lcNotificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationId])
     }
     
     // debug用
