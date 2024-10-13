@@ -28,6 +28,10 @@ struct MoneyList: View {
                     
                     Divider().padding(.horizontal)
                     
+                    BudgetList().padding()
+                    
+                    Divider().padding(.horizontal)
+                    
                     // PaymentList Start
                     VStack {
                         HStack{
@@ -41,6 +45,7 @@ struct MoneyList: View {
                             }
                             
                         }
+                        
                         
                         if isExpandedPaymentList {
                             VStack{

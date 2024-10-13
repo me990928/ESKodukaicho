@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MoneySavingItem: View {
+struct MoneyTagPriceItem: View {
     @State var tagName: String
     @State var tagColor: Color
     @State var money: Int
@@ -47,5 +47,5 @@ struct MoneySavingItem: View {
 }
 
 #Preview {
-    MoneySavingItem(tagName: "", tagColor: .red, money: 1000)
+    MoneyTagPriceItem(tagName: "", tagColor: .red, money: 1000)
 }

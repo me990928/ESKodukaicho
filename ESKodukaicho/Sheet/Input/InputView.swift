@@ -17,6 +17,7 @@ struct InputView: View {
     
     @FocusState var textField: Bool
     @FocusState var titleField: Bool
+    @FocusState var priceField: Bool
     
     var body: some View {
         let placeholder = "タップしてメモを入力してください"
@@ -51,6 +52,17 @@ struct InputView: View {
                         }
                     }
                     HStack{
+                        Text("タグ割当て予算").font(.headline)
+                        Spacer()
+                        Text("1000円").font(.headline)
+                    }.padding(.vertical)
+                    HStack{
+                        Text("収支額").font(.headline)
+                        Spacer()
+                        TextField("1000", text: .constant("")).focused($priceField).multilineTextAlignment(.trailing).keyboardType(.decimalPad)
+                        Text("円").font(.headline)
+                    }.padding(.bottom)
+                    HStack{
                         Text("メモ").font(.headline)
                         Spacer()
                     }
@@ -73,6 +85,9 @@ struct InputView: View {
                     }
                     if self.titleField {
                         titleField = false
+                    }
+                    if self.priceField {
+                        priceField = false
                     }
                 }
     }
