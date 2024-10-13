@@ -18,14 +18,26 @@ final class Tags {
     var green: Double = 0
     var blue: Double = 0
     var alpha: Double = 0
+    var createdAt: Date
+    var updatedAt: Date
     
-    init (id: String, name: String, red: Double, green: Double, blue: Double, alpha: Double) {
+    // relationship
+    var budget: [Budget]
+    var cash: [Cash]
+    var save: [Save]
+    
+    init (id: String, name: String, red: Double, green: Double, blue: Double, alpha: Double, createdAt: Date = .now, updatedAt: Date = .now, budget: [Budget] = [], cash: [Cash] = [], save: [Save] = []) {
         self.id = id
         self.name = name
         self.red = red
         self.green = green
         self.blue = blue
         self.alpha = alpha
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.budget = budget
+        self.cash = cash
+        self.save = save
     }
     
     convenience init(color: Color, name: String) {
