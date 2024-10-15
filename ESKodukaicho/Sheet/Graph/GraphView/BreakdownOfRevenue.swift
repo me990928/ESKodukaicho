@@ -23,7 +23,7 @@ struct BreakdownOfRevenue: View {
         .init(id: 2, category: "貯金", price: 100000)
     ]
     
-    let tags: [Tags] = [
+    let tags: [TagsModel] = [
         .init(id: UUID().uuidString, name: "アルバイト", color: .red),
         .init(id: UUID().uuidString, name: "お小遣い", color: .green),
         .init(id: UUID().uuidString, name: "ジュース", color: .blue),
@@ -112,7 +112,7 @@ struct RevenueDate: Identifiable {
     var color: Color = .gray
 }
 
-struct Tags: Identifiable {
+struct TagsModel: Identifiable {
     var id: String
     var name: String
     var color: Color

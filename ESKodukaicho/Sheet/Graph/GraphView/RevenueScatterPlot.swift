@@ -21,7 +21,7 @@ struct RevenueScatterPlot: View {
         .init(tag: "未分類", tagMonthPrice: 2800, allMonthPrice: 15000, color: .yellow),
     ]
     
-    let tags: [Tags] = [
+    let tags: [TagsModel] = [
         .init(id: UUID().uuidString, name: "ジュース", color: .blue),
         .init(id: UUID().uuidString, name: "昼食", color: .red),
         .init(id: UUID().uuidString, name: "交通費", color: .green),
